@@ -18,6 +18,7 @@ const wasm_pass = import("wasm-pass");
 
 wasm_pass.then(wasm_pass => {
     const password = wasm_pass.generate(10);
+    console.log(password);
 }).catch(err => console.error(err))
 ```
 
