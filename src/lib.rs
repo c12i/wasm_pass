@@ -15,8 +15,6 @@ pub fn generate(len: usize) -> String {
         })
         .collect();
 
-    println!("{:?}", password);
-
     password
 }
 
