@@ -1,19 +1,35 @@
-mod utils;
-
 use wasm_bindgen::prelude::*;
-
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+use rand::Rng;
 
 #[wasm_bindgen]
-extern {
-    fn alert(s: &str);
+pub fn generate(len: usize) -> String {
+    const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+                            abcdefghijklmnopqrstuvwxyz\
+                            0123456789)(*&^%$#@!~";
+    let mut rng = rand::thread_rng();
+
+    let password: String = (0..len)
+        .map(|_| {
+            let idx = rng.gen_range(0, CHARSET.len());
+            CHARSET[idx] as char
+        })
+        .collect();
+
+    println!("{:?}", password);
+
+    password
 }
 
-#[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, wasm-pass!");
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_generate() {
+        let password = generate(20);
+
+        println!("{}", password);
+
+        assert_eq!(password.len(), 20);
+    }
 }
