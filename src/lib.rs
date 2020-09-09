@@ -3,9 +3,9 @@ use rand::Rng;
 
 #[wasm_bindgen]
 pub fn generate(len: usize) -> String {
-    const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+    const CHARSET: &[u8] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                             abcdefghijklmnopqrstuvwxyz\
-                            0123456789)(*&^%$#@!~";
+                            0123456789)(*&^%$#@!~".as_bytes();
     let mut rng = rand::thread_rng();
 
     let password: String = (0..len)
