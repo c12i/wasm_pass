@@ -1,5 +1,5 @@
-wasm_pass
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
+# wasm_pass
+[![wasm-pass](https://img.shields.io/npm/v/wasm-pass.svg)](https://www.npmjs.com/package/wasm-pass)
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](README.md)
 [![License: MIT/APACHE](https://img.shields.io/badge/License-MIT/APACHE-yellow.svg)](LICENSE_MIT)
 
