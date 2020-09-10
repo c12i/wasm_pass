@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <p>Enter password length:</p>
-      <input type="number" onChange={handleChange} value={input} min={5} max={1000000} />
+      <input type="number" onChange={handleChange} value={input} minLength={5} maxLength={1000000} />
       <button onClick={handleClick}>Generate Password</button>
       <p>Your password:</p>
       <strong>{password}</strong>
