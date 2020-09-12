@@ -2,7 +2,7 @@ import React, { useState } from "react";
 const wasm = import("wasm-pass");
 
 const App = () => {
-  const [password, genPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {
@@ -11,7 +11,7 @@ const App = () => {
 
   const handleClick = () => {
     wasm.then((wp) => {
-      genPassword(wp.generate(parseInt(input)));
+      setPassword(wp.generate(parseInt(input)));
     }).catch(err => {
         alert(err.toString())
     });
