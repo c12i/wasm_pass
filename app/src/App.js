@@ -13,7 +13,7 @@ const App = () => {
     wasm.then((wp) => {
       setPassword(wp.generate(parseInt(input)));
     }).catch(err => {
-        alert(err.toString())
+      alert(err.toString())
     });
   };
 
