@@ -19,6 +19,9 @@ const App = () => {
 
   return (
     <div>
+      <h2>
+        <a href="https://github.com/collinsmuriuki/wasm_pass">wasm-pass</a>
+      </h2>
       <p>Enter password length:</p>
       <input type="number" onChange={handleChange} value={input} />
       <button onClick={handleClick}>Generate Password</button>
