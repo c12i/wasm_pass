@@ -1,0 +1,15 @@
+{
+  "name": "wasm-pass",
+  "collaborators": [
+    "Collins Muriuki <murerwacollins@gmail.com>"
+  ],
+  "version": "0.1.3",
+  "files": [
+    "wasm_pass_bg.wasm",
+    "wasm_pass.js",
+    "wasm_pass.d.ts"
+  ],
+  "module": "wasm_pass.js",
+  "types": "wasm_pass.d.ts",
+  "sideEffects": false
+}
