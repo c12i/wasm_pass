@@ -3,7 +3,7 @@ const wasm = import("wasm-pass");
 
 const App = () => {
   const [password, setPassword] = useState("");
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("16");
 
   const handleChange = (e) => {
     setInput(e.target.value);
