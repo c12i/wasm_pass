@@ -26,7 +26,7 @@ wasm_pass.then(wasm_pass => {
 ## Run tests
 
 ```sh
-cargo test
+cargo test -- --show-output
 ```
 
 ## Author
