@@ -6,3 +6,14 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
+button, input {
+    margin: 1rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

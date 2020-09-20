@@ -18,7 +18,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>
         <a href="https://github.com/collinsmuriuki/wasm_pass">wasm-pass</a>
       </h2>
