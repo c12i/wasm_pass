@@ -4,7 +4,7 @@
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](README.md)
 [![License: MIT/APACHE](https://img.shields.io/badge/License-MIT/APACHE-yellow.svg)](LICENSE_MIT)
 
-> A password generator build with Rust and Web Assembly
+> A password generator build with Rust and Web Assembly.
 
 ## Install
 
@@ -31,17 +31,13 @@ cargo test -- --show-output
 
 ## Author
 
-👤 **collinsmuriuki**
+**collinsmuriuki**
 
 * Github: [@collinsmuriuki](https://github.com/collinsmuriuki)
 
-## Show your support
+## Tutorial
 
-Give a ⭐️ if this project helped you!
+Wrote an article about how I built this project [here](https://developers.decoded.africa/how-to-build-a-npm-package-with-rust-and-web-assembly-and-implement-it-on-a-react-application/)
 
-
-## 📝 License
-
-Copyright © 2020 [collinsmuriuki](https://github.com/collinsmuriuki).
 
 This project is [MIT/APACHE](LICENSE_MIT) licensed.
