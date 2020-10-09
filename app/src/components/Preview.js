@@ -8,7 +8,7 @@ import {
 const Preview = ({ value, onCopy, hasCopied }) => {
   return (
     <>
-      <Flex mt={2}>
+      <Flex py={4}>
         <Input value={value} isReadOnly width="300px" height="36px" />
         <Button variantColor="teal" onClick={onCopy} ml={2} border="none">
           {hasCopied ? "Copied" : "Copy"}
