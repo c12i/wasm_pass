@@ -1,34 +1,93 @@
-import React, { useState } from "react";
-import { Button } from "@chakra-ui/core";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  IconButton,
+  useClipboard,
+} from "@chakra-ui/core";
+import Preview from "./components/Preview";
 const wasm = import("wasm-pass");
 
 const App = () => {
   const [password, setPassword] = useState("");
-  const [input, setInput] = useState("16");
+  const [len, setLen] = useState(16);
+  const { onCopy, hasCopied } = useClipboard(password);
 
-  const handleChange = (e) => {
-    setInput(e.target.value);
-  };
+  useEffect(() => {
+    wasm
+      .then((wp) => {
+        setPassword(wp.generate(parseInt(len)));
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  }, []);
 
   const handleClick = () => {
-    wasm.then((wp) => {
-      setPassword(wp.generate(parseInt(input)));
-    }).catch(err => {
-      alert(err.toString())
-    });
+    wasm
+      .then((wp) => {
+        setPassword(wp.generate(parseInt(len)));
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  };
+
+  const handleDrag = (val) => {
+    setLen(val);
+    wasm
+      .then((wp) => {
+        setPassword(wp.generate(parseInt(val)));
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
   };
 
   return (
     <div className="container">
-      <h2>
-        <a href="https://github.com/collinsmuriuki/wasm_pass">wasm-pass</a>
-      </h2>
-      <Button>Hello</Button>
-      <p>Enter password length:</p>
-      <input type="number" onChange={handleChange} value={input} />
-      <button onClick={handleClick}>Generate Password</button>
-      <p>Your password:</p>
-      <strong>{password}</strong>
+      <Text fontSize="6xl">wasm-pass</Text>
+      <Text color="gray.500">
+        A password generator built with{" "}
+        <a href="https://www.rust-lang.org/what/wasm">RustWasm</a> and{" "}
+        <a href="https://reactjs.org/">React</a>
+      </Text>
+      <Text mt={4} color="gray.500">
+        Password Length:{" "}
+        <IconButton
+          icon="repeat"
+          cursor="pointer"
+          variantColor="teal"
+          border="none"
+          isRound
+          ml={2}
+          onClick={handleClick}
+        />
+      </Text>
+      <Slider
+        min={15}
+        max={100}
+        defaultValue={20}
+        width="400px"
+        color="teal"
+        onChange={handleDrag}
+      >
+        <SliderTrack />
+        <SliderFilledTrack />
+        <SliderThumb size={6}>
+          <Text color="gray.500" fontSize="xs">
+            {len}
+          </Text>
+        </SliderThumb>
+      </Slider>
+      <Preview onCopy={onCopy} value={password} hasCopied={hasCopied} />
+      <Text color="gray.500" fontSize="sm">
+        Fork me on{" "}
+        <a href="https://github.com/collinsmuriuki/wasm_pass">GitHub</a>
+      </Text>
     </div>
   );
 };
