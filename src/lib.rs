@@ -2,7 +2,19 @@ use rand::Rng;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
+/// Generates a random password
+/// 
+/// `len` is the length of the password
+/// 
+/// `no_symbols` true or false if you need special symbols in password
+/// 
+/// `no_nums` true or false for if you need numbers in password
+/// 
+/// ## Panics
+/// If len is 0
 pub fn generate(len: usize, no_symbols: bool, no_nums: bool) -> String {
+    assert!(len > 0);
+
     let mut charset: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                             abcdefghijklmnopqrstuvwxyz\
                             0123456789)(*&^%$#@!~";
@@ -38,5 +50,11 @@ mod tests {
         println!("{}", password);
 
         assert_eq!(password.len(), 20);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_len() {
+        let _ = generate(0, false, true);
     }
 }
