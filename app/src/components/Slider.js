@@ -12,7 +12,7 @@ const SliderComponent = ({ handleDrag, len }) => {
     return (
       <Box width={["100%", "50%", "40%", "35%"]}>
         <Slider
-          min={15}
+          min={8}
           max={100}
           py={4}
           defaultValue={20}

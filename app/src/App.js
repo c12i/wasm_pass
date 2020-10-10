@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Text, IconButton } from "@chakra-ui/core";
 import Header from "./components/Header";
 import Preview from "./components/Preview";
 import Slider from "./components/Slider";
 import CheckboxStack from "./components/CheckboxStack";
 import Footer from "./components/Footer";
+import PasswordToggler from "./components/PasswordToggler";
 const wasm = import("wasm-pass");
 
 const App = () => {
@@ -57,18 +57,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <Text pb={2} color="gray.500">
-        Configure:{" "}
-        <IconButton
-          icon="repeat"
-          cursor="pointer"
-          variantColor="teal"
-          border="none"
-          isRound
-          ml={2}
-          onClick={handleClick}
-        />
-      </Text>
+      <PasswordToggler handleClick={handleClick} />
       <CheckboxStack
         nums={nums}
         handleNums={handleNums}
