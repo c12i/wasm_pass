@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  IconButton,
-  Stack,
-  Checkbox,
-  useClipboard,
-} from "@chakra-ui/core";
+import Header from "./components/Header";
 import Preview from "./components/Preview";
 import Slider from "./components/Slider";
+import CheckboxStack from "./components/CheckboxStack";
+import Footer from "./components/Footer";
+import PasswordToggler from "./components/PasswordToggler";
 const wasm = import("wasm-pass");
 
 const App = () => {
@@ -15,7 +12,6 @@ const App = () => {
   const [len, setLen] = useState(16);
   const [chars, setChars] = useState(false);
   const [nums, setNums] = useState(false);
-  const { onCopy, hasCopied } = useClipboard(password);
 
   useEffect(() => {
     wasm
@@ -40,12 +36,12 @@ const App = () => {
   const handleNums = () => {
     setNums(!nums);
     handleClick();
-  }
+  };
 
   const handleChars = () => {
     setChars(!chars);
     handleClick();
-  }
+  };
 
   const handleDrag = (val) => {
     setLen(val);
@@ -60,54 +56,17 @@ const App = () => {
 
   return (
     <div className="container">
-      <Text fontSize="6xl">wasm_pass</Text>
-      <Text color="gray.500">
-        A password generator built with{" "}
-        <a href="https://www.rust-lang.org/what/wasm">RustWasm</a> and{" "}
-        <a href="https://reactjs.org/">React</a>
-      </Text>
-      <Text pb={2} color="gray.500">
-        Configure:{" "}
-        <IconButton
-          icon="repeat"
-          cursor="pointer"
-          variantColor="teal"
-          border="none"
-          isRound
-          ml={2}
-          onClick={handleClick}
-        />
-      </Text>
-      <Stack
-        spacing={10}
-        isInline
-        pb={4}
-        fontFamily="sans-serif"
-        color="gray.500"
-      >
-        <Checkbox
-          size="sm"
-          variantColor="teal"
-          defaultIsChecked={!nums}
-          onChange={handleNums}
-        >
-          0-9
-        </Checkbox>
-        <Checkbox
-          size="sm"
-          variantColor="teal"
-          defaultIsChecked={!chars}
-          onChange={handleChars}
-        >
-          !@#$%^&*
-        </Checkbox>
-      </Stack>
+      <Header />
+      <PasswordToggler handleClick={handleClick} />
+      <CheckboxStack
+        nums={nums}
+        handleNums={handleNums}
+        chars={chars}
+        handleChars={handleChars}
+      />
       <Slider handleDrag={handleDrag} len={len} />
-      <Preview onCopy={onCopy} value={password} hasCopied={hasCopied} />
-      <Text color="gray.500" fontSize="sm">
-        Fork me on{" "}
-        <a href="https://github.com/collinsmuriuki/wasm_pass">GitHub</a>
-      </Text>
+      <Preview value={password} />
+      <Footer />
     </div>
   );
 };
