@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
-  Heading,
   Text,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   IconButton,
   Stack,
   Checkbox,
   useClipboard,
 } from "@chakra-ui/core";
 import Preview from "./components/Preview";
+import Slider from "./components/Slider";
 const wasm = import("wasm-pass");
 
 const App = () => {
@@ -70,8 +66,8 @@ const App = () => {
         <a href="https://www.rust-lang.org/what/wasm">RustWasm</a> and{" "}
         <a href="https://reactjs.org/">React</a>
       </Text>
-      <Text pb={4} color="gray.500">
-        Password Length:{" "}
+      <Text pb={2} color="gray.500">
+        Configure:{" "}
         <IconButton
           icon="repeat"
           cursor="pointer"
@@ -85,7 +81,7 @@ const App = () => {
       <Stack
         spacing={10}
         isInline
-        pb={2}
+        pb={4}
         fontFamily="sans-serif"
         color="gray.500"
       >
@@ -106,23 +102,7 @@ const App = () => {
           !@#$%^&*
         </Checkbox>
       </Stack>
-      <Slider
-        min={15}
-        max={100}
-        py={4}
-        defaultValue={20}
-        width="400px"
-        color="teal"
-        onChange={handleDrag}
-      >
-        <SliderTrack />
-        <SliderFilledTrack />
-        <SliderThumb size={6}>
-          <Text color="gray.500" fontSize="xs">
-            {len}
-          </Text>
-        </SliderThumb>
-      </Slider>
+      <Slider handleDrag={handleDrag} len={len} />
       <Preview onCopy={onCopy} value={password} hasCopied={hasCopied} />
       <Text color="gray.500" fontSize="sm">
         Fork me on{" "}
