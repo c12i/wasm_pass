@@ -2,18 +2,17 @@ use rand::Rng;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn generate(len: usize, no_chars: bool, no_nums: bool) -> String {
-    let mut charset: &[u8] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+pub fn generate(len: usize, no_symbols: bool, no_nums: bool) -> String {
+    let mut charset: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                             abcdefghijklmnopqrstuvwxyz\
-                            0123456789)(*&^%$#@!~"
-        .as_bytes();
+                            0123456789)(*&^%$#@!~";
 
-    if no_chars && no_nums {
-        charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".as_bytes();
-    } else if no_chars {
-        charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".as_bytes();
+    if no_symbols && no_nums {
+        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    } else if no_symbols {
+        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     } else if no_nums {
-        charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)(*&^%$#@!~".as_bytes();
+        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)(*&^%$#@!~";
     }
 
     let mut rng = rand::thread_rng();

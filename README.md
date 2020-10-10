@@ -18,6 +18,11 @@ npm install wasm-pass
 const wasm_pass = import("wasm-pass");
 
 wasm_pass.then(wasm_pass => {
+    /*
+    @param len number
+    @param no_symbols boolean
+    @param no_nums boolean
+    */
     const password = wasm_pass.generate(10, false, false);
     console.log(password);
 }).catch(err => console.error(err))
