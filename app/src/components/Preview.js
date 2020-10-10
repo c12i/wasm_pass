@@ -1,12 +1,8 @@
 import React from "react";
-import {
-    Box,
-    Button,
-    Flex,
-    Input,
-  } from "@chakra-ui/core";
+import { Box, Button, Flex, Input, useClipboard } from "@chakra-ui/core";
 
-const Preview = ({ value, onCopy, hasCopied }) => {
+const Preview = ({ value }) => {
+  const { onCopy, hasCopied } = useClipboard(value);
   return (
     <Box width={["100%", "50%", "40%", "35%"]}>
       <Flex py={4}>
