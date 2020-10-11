@@ -13,24 +13,22 @@ const App = () => {
   const [chars, setChars] = useState(false);
   const [nums, setNums] = useState(false);
 
-  useEffect(() => {
+  const triggerWasm = (l) => {
     wasm
       .then((wp) => {
-        setPassword(wp.generate(parseInt(len), chars, nums));
+        setPassword(wp.generate(parseInt(l), chars, nums));
       })
       .catch((err) => {
         alert(err.toString());
       });
+  };
+
+  useEffect(() => {
+    triggerWasm(len);
   }, []);
 
   const handleClick = () => {
-    wasm
-      .then((wp) => {
-        setPassword(wp.generate(parseInt(len), chars, nums));
-      })
-      .catch((err) => {
-        alert(err.toString());
-      });
+    triggerWasm(len);
   };
 
   const handleNums = () => {
@@ -45,13 +43,7 @@ const App = () => {
 
   const handleDrag = (val) => {
     setLen(val);
-    wasm
-      .then((wp) => {
-        setPassword(wp.generate(parseInt(val), chars, nums));
-      })
-      .catch((err) => {
-        alert(err.toString());
-      });
+    triggerWasm(val);
   };
 
   return (
