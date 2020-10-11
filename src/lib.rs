@@ -2,16 +2,23 @@ use rand::Rng;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-/// Generates a random password
+/// # Password Generator
 /// 
-/// `len` is the length of the password
+/// A random password generator function
 /// 
-/// `no_symbols` true or false if you need special symbols in password
+/// # Arguments
+/// `len` is the length of the password (`usize`). `no_symbols` specifies presence or absence of symbols. `no_nums` specifies the presence ot absence of numbers.
 /// 
-/// `no_nums` true or false for if you need numbers in password
+/// # Example
+/// ```rust
+/// use wasm_pass::generate;
 /// 
-/// ## Panics
-/// If len is 0
+/// let password = generate(20, false, false);
+/// assert_eq!(password.len(), 20);
+/// ```
+/// 
+/// # Panics
+/// If `len == 0`
 pub fn generate(len: usize, no_symbols: bool, no_nums: bool) -> String {
     assert!(len > 0);
 
