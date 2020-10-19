@@ -27,11 +27,16 @@ pub fn generate(len: usize, no_symbols: bool, no_nums: bool) -> String {
                             0123456789)(*&^%$#@!~";
 
     if no_symbols && no_nums {
-        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+                    abcdefghijklmnopqrstuvwxyz";
     } else if no_symbols {
-        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+                    abcdefghijklmnopqrstuvwxyz\
+                    0123456789";
     } else if no_nums {
-        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)(*&^%$#@!~";
+        charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+                    abcdefghijklmnopqrstuvwxyz\
+                    )(*&^%$#@!~";
     }
 
     let mut rng = rand::thread_rng();

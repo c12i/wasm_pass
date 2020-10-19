@@ -7,10 +7,10 @@
 > A password generator build with Rust and Web Assembly.
 
 ## Install
-
 ```sh
 npm install wasm-pass
 ```
+KNOWN ISSUE: npm package seems to not be consistent
 
 ## Usage
 
