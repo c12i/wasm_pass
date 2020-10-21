@@ -13,7 +13,7 @@ npm install wasm-pass
 KNOWN ISSUE: npm package seems to not be consistent. Temporary fix is to use github uri as version in your package.json:
 ```json
 {
-    "wasm-pass": "github:collinsmuriuki/wasm-pass#npm"
+    "wasm-pass": "github:collinsmuriuki/wasm_pass#npm"
 }
 ```
 
