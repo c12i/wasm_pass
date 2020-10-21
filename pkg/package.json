@@ -1,0 +1,23 @@
+{
+  "name": "wasm-pass",
+  "collaborators": [
+    "Collins Muriuki <murerwacollins@gmail.com>"
+  ],
+  "description": "A simple password generator",
+  "version": "0.1.11",
+  "license": "MIT/APACHE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/collinsmuriuki/wasm-pack"
+  },
+  "files": [
+    "wasm_pass_bg.wasm",
+    "wasm_pass.js",
+    "wasm_pass.d.ts",
+    "LICENSE_APACHE",
+    "LICENSE_MIT"
+  ],
+  "module": "wasm_pass.js",
+  "types": "wasm_pass.d.ts",
+  "sideEffects": false
+}
