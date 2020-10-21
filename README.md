@@ -10,7 +10,18 @@
 ```sh
 npm install wasm-pass
 ```
-KNOWN ISSUE: npm package seems to not be consistent
+KNOWN ISSUE: npm package seems to not be consistent. Temporary fix is to use github uri as version in your package.json:
+```json
+{
+    // ...
+    "wasm-pass": "github:collinsmuriuki/wasm-pass#npm"
+    //... 
+}
+```
+Or specify repository+branch when running npm install
+```sh
+npm install collinsmuriuki/wasm-pass#npm
+```
 
 ## Usage
 
