@@ -1,36 +1,40 @@
 # wasm_pass
-[![wasm-pass](https://img.shields.io/npm/v/wasm-pass.svg)](https://www.npmjs.com/package/wasm-pass)
-[![Build Status](https://travis-ci.com/collinsmuriuki/wasm_pass.svg?branch=master)](https://travis-ci.com/collinsmuriuki/wasm_pass)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](README.md)
-[![License: MIT/APACHE](https://img.shields.io/badge/License-MIT/APACHE-yellow.svg)](LICENSE_MIT)
 
-> A password generator build with Rust and Web Assembly.
+A password generator powered by Rust, web-assembly and React.js.
 
-## Install
-```sh
-npm install wasm-pass
-```
-KNOWN ISSUE: npm package seems to not be consistent. Temporary fix is to use github uri as version in your package.json:
-```json
-{
-    "wasm-pass": "github:collinsmuriuki/wasm_pass#npm"
-}
+This project is based on an article I wrote that demonstrates how to build this app. Read it [here](https://collinsmuriuki.xyz/wasm-tutorial/)
+
+## Run Locally
+
+Clone
+
+```shell
+git clone https://github.com/collinsmuriuki/wasm_pass.git
 ```
 
-## Usage
+Build wasm package
 
-```js
-const wasm_pass = import("wasm-pass");
+```shell
+wasm-pack build
+```
 
-wasm_pass.then(wasm_pass => {
-    /*
-    @param len number
-    @param no_symbols boolean
-    @param no_nums boolean
-    */
-    const password = wasm_pass.generate(10, false, false);
-    console.log(password);
-}).catch(err => console.error(err))
+cd to app directory and run npm install
+
+```shell
+cd app
+npm install
+```
+
+Run the dev server
+
+```shell
+npm start
+```
+
+Build for production
+
+```shell
+npm run build
 ```
 
 ## Run tests
@@ -43,11 +47,6 @@ cargo test -- --show-output
 
 **collinsmuriuki**
 
-* Github: [@collinsmuriuki](https://github.com/collinsmuriuki)
-
-## Tutorial
-
-Wrote an article about how I built this project [here](https://developers.decoded.africa/how-to-build-a-npm-package-with-rust-and-web-assembly-and-implement-it-on-a-react-application/)
-
+-   Github: [@collinsmuriuki](https://github.com/collinsmuriuki)
 
 This project is [MIT/APACHE](LICENSE_MIT) licensed.
