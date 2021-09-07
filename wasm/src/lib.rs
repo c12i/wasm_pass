@@ -3,37 +3,37 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 /// # Password Generator
-/// 
+///
 /// A random password generator function
-/// 
+///
 /// # Arguments
-/// `len` is the length of the password (`usize`). `no_symbols` specifies presence or absence of symbols. `no_nums` specifies the presence ot absence of numbers.
-/// 
+/// `len` is the length of the password (`usize`). `has_no_special_characters` specifies presence or absence of special_characters. `has_no_numbers` specifies the presence ot absence of numbers.
+///
 /// # Example
 /// ```rust
 /// use wasm_pass::generate;
-/// 
+///
 /// let password = generate(20, false, false);
 /// assert_eq!(password.len(), 20);
 /// ```
-/// 
+///
 /// # Panics
 /// If `len == 0`
-pub fn generate(len: usize, no_symbols: bool, no_nums: bool) -> String {
+pub fn generate(len: usize, has_no_special_characters: bool, has_no_numbers: bool) -> String {
     assert!(len > 0);
 
     let mut charset: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                             abcdefghijklmnopqrstuvwxyz\
                             0123456789)(*&^%$#@!~";
 
-    if no_symbols && no_nums {
+    if has_no_special_characters && has_no_numbers {
         charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                     abcdefghijklmnopqrstuvwxyz";
-    } else if no_symbols {
+    } else if has_no_special_characters {
         charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                     abcdefghijklmnopqrstuvwxyz\
                     0123456789";
-    } else if no_nums {
+    } else if has_no_numbers {
         charset = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                     abcdefghijklmnopqrstuvwxyz\
                     )(*&^%$#@!~";
