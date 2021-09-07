@@ -15,6 +15,7 @@ git clone https://github.com/collinsmuriuki/wasm_pass.git
 Build wasm package
 
 ```shell
+cd wasm
 wasm-pack build
 ```
 
