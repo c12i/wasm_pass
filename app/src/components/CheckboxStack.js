@@ -14,7 +14,7 @@ const CheckboxStack = ({ nums, handleNums, chars, handleChars }) => {
         size="sm"
         variantColor="teal"
         defaultIsChecked={!nums}
-        onChange={handleNums}
+        onChange={(event) => handleNums(!event.target.checked)}
       >
         0-9
       </Checkbox>
@@ -22,7 +22,7 @@ const CheckboxStack = ({ nums, handleNums, chars, handleChars }) => {
         size="sm"
         variantColor="teal"
         defaultIsChecked={!chars}
-        onChange={handleChars}
+        onChange={(event) => handleChars(!event.target.checked)}
       >
         !@#$%^&*
       </Checkbox>

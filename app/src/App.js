@@ -18,8 +18,7 @@ const App = () => {
       const password = generatePassword(passwordLength, hasNoSpecialCharacters, hasNoNumbers)
       setPassword(password)
     })
-    console.log({passwordLength, hasNoNumbers, hasNoSpecialCharacters})
-  }, [passwordLength, hasNoSpecialCharacters, hasNoNumbers])
+  }, [hasNoNumbers, hasNoSpecialCharacters, passwordLength])
 
   useEffect(() => {
     triggerWasm();
