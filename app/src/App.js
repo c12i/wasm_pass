@@ -8,33 +8,34 @@ import PasswordToggler from "./components/PasswordToggler";
 
 const App = () => {
   const [password, setPassword] = useState("");
-  const [len, setLen] = useState(16);
-  const [chars, setChars] = useState(false);
-  const [nums, setNums] = useState(false);
+  const [passwordLength, setPasswordLength] = useState(16);
+  const [hasNoSpecialCharacters, setHasNoSpecialCharacters] = useState(false);
+  const [hasNoNumbers, setHasNoNumbers] = useState(false);
 
-  const triggerWasm = useCallback(len => {
+  const triggerWasm = useCallback(() => {
     const wasm = import("../../wasm/pkg/wasm_pass");
-    wasm.then(({generate: generatePassword}) => {
-      const password = generatePassword(len)
+    wasm.then(({ generate: generatePassword }) => {
+      const password = generatePassword(passwordLength, hasNoSpecialCharacters, hasNoNumbers)
       setPassword(password)
     })
-  })
+    console.log({passwordLength, hasNoNumbers, hasNoSpecialCharacters})
+  }, [passwordLength, hasNoSpecialCharacters, hasNoNumbers])
 
   useEffect(() => {
-    triggerWasm(len);
-  }, [chars, len, nums]);
+    triggerWasm();
+  }, [hasNoNumbers, hasNoSpecialCharacters, passwordLength])
 
   return (
     <div className="container">
       <Header />
-      <PasswordToggler handleClick={() => triggerWasm(len)} />
+      <PasswordToggler handleClick={() => triggerWasm()} />
       <CheckboxStack
-        nums={nums}
-        handleNums={setNums}
-        chars={chars}
-        handleChars={setChars}
+        nums={hasNoNumbers}
+        handleNums={setHasNoNumbers}
+        chars={hasNoSpecialCharacters}
+        handleChars={setHasNoSpecialCharacters}
       />
-      <Slider handleDrag={setLen} len={len} />
+      <Slider handleDrag={setPasswordLength} len={passwordLength} />
       <Preview value={password} />
       <Footer />
     </div>
