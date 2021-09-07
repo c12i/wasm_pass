@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Preview from "./components/Preview";
 import Slider from "./components/Slider";
@@ -13,50 +13,28 @@ const App = () => {
   const [chars, setChars] = useState(false);
   const [nums, setNums] = useState(false);
 
-  const triggerWasm = (l) => {
-    wasm
-      .then((wp) => {
-        setPassword(wp.generate(parseInt(l), chars, nums));
-      })
-      .catch((err) => {
-        alert(err.toString());
-      });
-  };
+  const triggerWasm = useCallback(len => {
+    wasm.then(({generate: generatePassword}) => {
+      let password = generatePassword(len)
+      setPassword(password)
+    })
+  })
 
   useEffect(() => {
     triggerWasm(len);
-  }, []);
-
-  const handleClick = () => {
-    triggerWasm(len);
-  };
-
-  const handleNums = () => {
-    setNums(!nums);
-    handleClick();
-  };
-
-  const handleChars = () => {
-    setChars(!chars);
-    handleClick();
-  };
-
-  const handleDrag = (val) => {
-    setLen(val);
-    triggerWasm(val);
-  };
+  }, [chars, len, nums]);
 
   return (
     <div className="container">
       <Header />
-      <PasswordToggler handleClick={handleClick} />
+      <PasswordToggler handleClick={() => triggerWasm(len)} />
       <CheckboxStack
         nums={nums}
-        handleNums={handleNums}
+        handleNums={setNums}
         chars={chars}
-        handleChars={handleChars}
+        handleChars={setChars}
       />
-      <Slider handleDrag={handleDrag} len={len} />
+      <Slider handleDrag={setLen} len={len} />
       <Preview value={password} />
       <Footer />
     </div>
