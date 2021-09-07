@@ -5,7 +5,6 @@ import Slider from "./components/Slider";
 import CheckboxStack from "./components/CheckboxStack";
 import Footer from "./components/Footer";
 import PasswordToggler from "./components/PasswordToggler";
-const wasm = import("wasm-pass");
 
 const App = () => {
   const [password, setPassword] = useState("");
@@ -14,6 +13,7 @@ const App = () => {
   const [nums, setNums] = useState(false);
 
   const triggerWasm = useCallback(len => {
+    const wasm = import("wasm-pass");
     wasm.then(({generate: generatePassword}) => {
       let password = generatePassword(len)
       setPassword(password)
