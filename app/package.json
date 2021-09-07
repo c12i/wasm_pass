@@ -18,7 +18,7 @@
     "emotion-theming": "^10.0.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "wasm-pass": "file:../pkg"
+    "wasm-pass": "file:../wasm/pkg"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

@@ -13,9 +13,9 @@ const App = () => {
   const [nums, setNums] = useState(false);
 
   const triggerWasm = useCallback(len => {
-    const wasm = import("wasm-pass");
+    const wasm = import("../../wasm/pkg/wasm_pass");
     wasm.then(({generate: generatePassword}) => {
-      let password = generatePassword(len)
+      const password = generatePassword(len)
       setPassword(password)
     })
   })
