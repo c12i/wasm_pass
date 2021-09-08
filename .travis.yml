@@ -1,12 +1,15 @@
 language: rust
 rust:
-  - stable
+  - beta
   - nightly
+  - stable
 jobs:
   allow_failures:
     - rust: nightly
   fast_finish: true
 cache: cargo
 script:
+  - cd wasm
   - cargo build --verbose --all
   - cargo test --verbose --all
+  - cd..
