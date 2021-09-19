@@ -12,10 +12,12 @@ const App = () => {
   const [hasNoSpecialCharacters, setHasNoSpecialCharacters] = useState(false);
   const [hasNoNumbers, setHasNoNumbers] = useState(false);
 
-  const triggerWasm = useCallback(async () => {
-    const { generate: generatePassword } = await import("../../wasm/pkg/wasm_pass");
-    const password = generatePassword(passwordLength, hasNoSpecialCharacters, hasNoNumbers)
-    setPassword(password)
+  const triggerWasm = useCallback(() => {
+    const wasm = import("wasm-pass");
+    wasm.then(({ generate: generatePassword }) => {
+      const password = generatePassword(passwordLength, hasNoSpecialCharacters, hasNoNumbers)
+      setPassword(password)
+    })
   }, [hasNoNumbers, hasNoSpecialCharacters, passwordLength])
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <PasswordToggler handleClick={() => triggerWasm()} />
+      <PasswordToggler handleClick={triggerWasm} />
       <CheckboxStack
         nums={hasNoNumbers}
         handleNums={setHasNoNumbers}
